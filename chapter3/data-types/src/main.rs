@@ -2,6 +2,8 @@ fn main() {
     scalar_types();
 
     tuple();
+
+    arrays()
 }
 
 fn scalar_types() {
@@ -69,4 +71,28 @@ fn tuple() {
     println!("The first value is: {}", tup.0);
     println!("The seconds value is: {}", tup.1);
     println!("The third value is: {}", tup.2);
+}
+
+fn arrays() {
+    // all elements of an array *must* have the same type.
+    // arrays have a fixed length.
+
+    // arrays are written as comma-separated list surrounded by brackets.
+    // the type annotation is optional.
+    let a: [i32; 5] = [1, 2, 3, 4, 5];
+
+    // initial an array with 5 elements that have the same value.
+    let b = [3; 5]; // identical to: let b = [3, 3, 3, 3, 3];
+
+    // accessing elements of an array
+    let first = a[0];
+    let second = a[1];
+
+    println!("The first value is: {}", first);
+    println!("The second value is: {}", second);
+
+    // out-of-bounds data access will panic at runtime, by default.
+    let index = 10;
+
+    // let element = a[index]; // will panic a runtime
 }
