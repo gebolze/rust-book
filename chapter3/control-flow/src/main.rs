@@ -7,6 +7,7 @@ fn main() {
     // loops
     loop_loops();
     while_loops();
+    for_loops();
 }
 
 fn if_expressions() {
@@ -91,5 +92,19 @@ fn while_loops() {
         number -= 1;
     }
 
+    println!("LIFTOFF!!!");
+}
+
+fn for_loops() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a.iter() {
+        println!("the value is: {}", element);
+    }
+
+    // for loops with a range
+    for number in (1..4).rev() {
+        println!("{}!", number);
+    }
     println!("LIFTOFF!!!");
 }
