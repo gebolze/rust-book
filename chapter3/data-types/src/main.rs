@@ -1,4 +1,10 @@
 fn main() {
+    scalar_types();
+
+    tuple();
+}
+
+fn scalar_types() {
     // integer types
     let a: i32 = 8i32;
     
@@ -46,4 +52,21 @@ fn main() {
     // therefore it can represent a lot more than just ASCII.
 
     println!("The value of d is: {}", d);
+}
+
+fn tuple() {
+    // tuples writen as a comma-separated list surrounded by parentheses
+    // the type annotation is optional
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+
+    // destructuring using pattern matching
+    let (x,y,z) = tup;
+    println!("The value of x is: {}", x);
+    println!("The value of y is: {}", y);
+    println!("The value of z is: {}", z);
+
+    // destructuring using indices
+    println!("The first value is: {}", tup.0);
+    println!("The seconds value is: {}", tup.1);
+    println!("The third value is: {}", tup.2);
 }
