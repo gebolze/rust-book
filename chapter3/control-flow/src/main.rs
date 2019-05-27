@@ -6,6 +6,7 @@ fn main() {
 
     // loops
     loop_loops();
+    while_loops();
 }
 
 fn if_expressions() {
@@ -80,4 +81,15 @@ fn loop_loops() {
     };
 
     println!("The result is {}", result);
+}
+
+fn while_loops() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{}!", number);
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
 }
