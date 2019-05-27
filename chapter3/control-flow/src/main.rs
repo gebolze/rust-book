@@ -1,4 +1,12 @@
 fn main() {
+    if_expressions();
+
+    multiple_else_if_expressions();
+
+    if_in_let_statements();
+}
+
+fn if_expressions() {
     // if expressions
 
     let number = 3;
@@ -16,9 +24,9 @@ fn main() {
     // if number {
     //     println!("number was three")
     // }
+}
 
-
-
+fn multiple_else_if_expressions() {
     // multiple else if expressions
     let number = 6;
 
@@ -31,9 +39,9 @@ fn main() {
     } else {
         println!("number is not divisible by 4, 3, or 2")
     }
+}
 
-
-
+fn if_in_let_statements() {
     //  if in let statement
     let condition = true;
     let number = if condition {
