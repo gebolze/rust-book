@@ -1,9 +1,11 @@
 fn main() {
+    // if expressions
     if_expressions();
-
     multiple_else_if_expressions();
-
     if_in_let_statements();
+
+    // loops
+    loop_loops();
 }
 
 fn if_expressions() {
@@ -54,4 +56,28 @@ fn if_in_let_statements() {
 
     // NOTE: when using an if in a let statement both branches need to evaluate
     // to a value of the same type, otherwise you'll get a compile-time error.
+}
+
+fn loop_loops() {
+    let mut x = 1;
+    loop {
+        println!("again!");
+        if x >= 5 {
+            break;
+        }
+        x = x + 1;
+    }
+
+    // returning a value from a loop
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {}", result);
 }
