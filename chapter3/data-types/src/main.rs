@@ -25,4 +25,14 @@ fn main() {
     // default type for floats is f64 
 
     println!("The value of b is: {}", b);
+
+
+
+    // boolean types
+
+    let c = true;
+
+    // a boolean can either be true or false
+    
+    println!("The value of c is: {}", c);
 }
