@@ -35,4 +35,15 @@ fn main() {
     // a boolean can either be true or false
     
     println!("The value of c is: {}", c);
+
+
+
+    // character types
+
+    let d = 'z';
+
+    // char type of 4-byte unicode scalar value.
+    // therefore it can represent a lot more than just ASCII.
+
+    println!("The value of d is: {}", d);
 }
