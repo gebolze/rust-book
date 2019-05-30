@@ -13,3 +13,11 @@ mod front_of_house {
         fn take_payment() {}
     }
 }
+
+pub fn eat_at_restaurant() {
+    // absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // relativate path
+    front_of_house::hosting::add_to_waitlist();
+}
