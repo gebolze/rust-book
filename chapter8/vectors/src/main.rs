@@ -70,4 +70,20 @@ fn main() {
     for i in &mut v {
         *i += 50;
     }
+
+
+
+    // using enum to store multiple types
+    
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f32),
+        Text(String)
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
 }
