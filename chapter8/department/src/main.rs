@@ -76,7 +76,7 @@ impl Command {
             return None;
         }
 
-        match words[0] {
+        match words[0].to_lowercase().as_ref() {
             "quit" => Some(Command::Quit),
             "help" => Some(Command::Help),
             "add" => Some(Command::Add(words[1].to_string(), words[3].to_string())),
