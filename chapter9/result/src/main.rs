@@ -10,6 +10,7 @@ fn main() {
     shortcut_with_expect();
 
     propagating_errors();
+    shortcut_propagating_errors();
 }
 
 fn panic_on_error() {
@@ -82,6 +83,26 @@ fn propagating_errors() {
             Ok(_) => Ok(s),
             Err(e) => Err(e),
         }
+    }
+
+    let username = read_username_from_file().expect("Failed to read the username");
+    println!("Username: {}", username);
+}
+
+fn shortcut_propagating_errors() {
+    use std::io;
+    use std::io::Read;
+
+    fn read_username_from_file() -> Result<String, io::Error> {
+        // The ? operator is similar to the match expression used in the
+        // propagating_errors function above. For Ok(x) it returns the x,
+        // otherwise it returns from the function with Err(x).
+        // NOTE: You can *only* use the ? operator in fuctions that return 
+        // a Result type.
+        let mut f = File::open("hello.txt")?;
+        let mut s = String::new();
+        f.read_to_string(&mut s)?;
+        Ok(s)
     }
 
     let username = read_username_from_file().expect("Failed to read the username");
