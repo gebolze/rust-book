@@ -7,6 +7,7 @@ fn main() {
     error_handling_with_closures();
 
     shortcut_with_unwrap();
+    shortcut_with_expect();
 }
 
 fn panic_on_error() {
@@ -53,4 +54,10 @@ fn shortcut_with_unwrap() {
     // unwrap() will panic on Err variant of Result, for Ok variant it will
     // return the "wrapped" value.
     let f = File::open("hello.txt").unwrap();
+}
+
+fn shortcut_with_expect() {
+    // Similar to unwrap expect will panic on Err. It additionally allows you
+    // to specify a custom error message used for the panic.
+    let f = File::open("hello.txt").expect("Failed to open hello.txt");
 }
