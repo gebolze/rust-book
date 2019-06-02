@@ -4,4 +4,7 @@ version = "0.1.0"
 authors = ["Markus Burkert <gebolze@gmail.com>"]
 edition = "2018"
 
+[profile.release]
+panic = 'abort'
+
 [dependencies]
