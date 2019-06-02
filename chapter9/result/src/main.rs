@@ -8,6 +8,8 @@ fn main() {
 
     shortcut_with_unwrap();
     shortcut_with_expect();
+
+    propagating_errors();
 }
 
 fn panic_on_error() {
@@ -60,4 +62,28 @@ fn shortcut_with_expect() {
     // Similar to unwrap expect will panic on Err. It additionally allows you
     // to specify a custom error message used for the panic.
     let f = File::open("hello.txt").expect("Failed to open hello.txt");
+}
+
+fn propagating_errors() {
+    use std::io;
+    use std::io::Read;
+
+    fn read_username_from_file() -> Result<String, io::Error> {
+        let f = File::open("hello.txt");
+
+        let mut f = match f {
+            Ok(file) => file,
+            Err(e) => return Err(e),
+        };
+
+        let mut s = String::new();
+        
+        match f.read_to_string(&mut s) {
+            Ok(_) => Ok(s),
+            Err(e) => Err(e),
+        }
+    }
+
+    let username = read_username_from_file().expect("Failed to read the username");
+    println!("Username: {}", username);
 }
