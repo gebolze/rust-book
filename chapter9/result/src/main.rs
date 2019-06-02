@@ -5,6 +5,8 @@ fn main() {
     panic_on_error();
     error_handling_with_match();
     error_handling_with_closures();
+
+    shortcut_with_unwrap();
 }
 
 fn panic_on_error() {
@@ -45,4 +47,10 @@ fn error_handling_with_closures() {
             panic!("There was a problem opening the file: {:?}", error);
         }
     });
+}
+
+fn shortcut_with_unwrap() {
+    // unwrap() will panic on Err variant of Result, for Ok variant it will
+    // return the "wrapped" value.
+    let f = File::open("hello.txt").unwrap();
 }
