@@ -35,10 +35,16 @@ impl Company {
     }
 
     fn list(&self, department: &str) {
-        let employees = self.employees_from(department);
-        println!("Employees of {}", department);
-        for employee in employees.unwrap() {
-            println!("- {}", employee);
+        match self.employees_from(department) {
+            Some(employees) => {
+                println!("Employees of {}", department);
+                for employee in employees {
+                    println!("- {}", employee);
+                }
+            }
+            None => {
+                println!("The isn't a department named '{}'", department);
+            }
         }
     }
 
