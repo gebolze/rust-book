@@ -124,9 +124,14 @@ fn main() {
 
 fn read_command() -> Option<Command> {
     use std::io;
+    use std::io::Write;
+
     let mut buffer = String::new();
 
-    println!(">");
+    print!("> ");
+    io::stdout().flush()
+        .expect("failed to flush stdout");
+
     io::stdin().read_line(&mut buffer)
         .expect("failed to read command");
 
