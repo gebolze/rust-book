@@ -61,12 +61,38 @@ impl Company {
     }
 }
 
-enum Commands {
+enum Command {
     Add(String, String),
     ListEmployees(String),
     ListAll,
     Quit,
     Help
+}
+
+impl Command {
+    fn parse(text: String) -> Option<Command> {
+        let words: Vec<&str> = text.trim().split_whitespace().collect();
+        if words.len() == 0 {
+            return None;
+        }
+
+        match words[0] {
+            "quit" => Some(Command::Quit),
+            "help" => Some(Command::Help),
+            "add" => Some(Command::Add(words[1].to_string(), words[3].to_string())),
+            "list" => {
+                if words.len() >= 2 {
+                    Some(Command::ListEmployees(words[1].to_string()))
+                } else {
+                    Some(Command::ListAll)
+                }
+            },
+            _ => {
+                println!("'{}' is not a supported command. Use help to list all available commands", words[0]);
+                None
+            },
+        }
+    }
 }
 
 fn handle_help() {
@@ -90,7 +116,7 @@ fn main() {
     }
 }
 
-fn read_command() -> Option<Commands> {
+fn read_command() -> Option<Command> {
     use std::io;
     let mut buffer = String::new();
 
@@ -98,41 +124,16 @@ fn read_command() -> Option<Commands> {
     io::stdin().read_line(&mut buffer)
         .expect("failed to read command");
 
-    let command = parse_command(buffer);
-    command
+    Command::parse(buffer)
 }
 
-fn parse_command(text: String) -> Option<Commands> {
-    let words: Vec<&str> = text.trim().split_whitespace().collect();
-    if words.len() == 0 {
-        return None;
-    }
-
-    match words[0] {
-        "quit" => Some(Commands::Quit),
-        "help" => Some(Commands::Help),
-        "add" => Some(Commands::Add(words[1].to_string(), words[3].to_string())),
-        "list" => {
-            if words.len() >= 2 {
-                Some(Commands::ListEmployees(words[1].to_string()))
-            } else {
-                Some(Commands::ListAll)
-            }
-        },
-        _ => {
-            println!("'{}' is not a supported command. Use help to list all available commands", words[0]);
-            None
-        },
-    }
-}
-
-fn handle_command(company: &mut Company, command: Commands) -> bool {
+fn handle_command(company: &mut Company, command: Command) -> bool {
     match command {
-        Commands::Add(name, department) => company.add_employee(&name, &department),
-        Commands::ListEmployees(department) => company.list(&department),
-        Commands::ListAll => company.listall(),
-        Commands::Help => handle_help(),
-        Commands::Quit => return false,
+        Command::Add(name, department) => company.add_employee(&name, &department),
+        Command::ListEmployees(department) => company.list(&department),
+        Command::ListAll => company.listall(),
+        Command::Help => handle_help(),
+        Command::Quit => return false,
     }
 
     true
