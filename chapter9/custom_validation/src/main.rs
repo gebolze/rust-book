@@ -1,6 +1,24 @@
 use std::io;
 use std::cmp::Ordering;
 
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("Guess value must be between 1 and 100, got {}", value);
+        }
+
+        Guess { value }
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
+
 fn main() {
 
     let secret_number = 57;
@@ -16,12 +34,9 @@ fn main() {
             Err(_) => continue,
         };
 
-        if (guess < 1 || guess > 100) {
-            println!("The secret number will be between 1 and 100.0");
-            continue;
-        }
+        let guess = Guess::new(guess);
 
-        match guess.cmp(&secret_number) {
+        match guess.value().cmp(&secret_number) {
             Ordering::Greater => println!("Your guess is too high"),
             Ordering::Less => println!("Your guess it to low"),
             Ordering::Equal => break,
