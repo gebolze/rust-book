@@ -28,6 +28,12 @@ struct Point<T> {
     y: T,
 }
 
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
 fn main() {
     let number_list = vec![34, 50, 25, 100, 65];
 
@@ -46,4 +52,7 @@ fn main() {
 
     // the following won't compile because x and y must be the same type
     // let wont_work = Point { x: 5, y: 4.0 };
+
+    println!("integer.x: {}", integer.x());
+    println!("float.x: {}", float.x());
 }
