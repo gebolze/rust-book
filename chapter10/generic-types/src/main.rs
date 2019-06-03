@@ -34,6 +34,12 @@ impl<T> Point<T> {
     }
 }
 
+impl Point<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
+
 fn main() {
     let number_list = vec![34, 50, 25, 100, 65];
 
@@ -55,4 +61,10 @@ fn main() {
 
     println!("integer.x: {}", integer.x());
     println!("float.x: {}", float.x());
+
+    // the following won't compile because distance_from_origin is only defined
+    // for f32 and not i32.
+    // let wont_work = integer.distance_from_origin();
+
+    println!("float distance: {}", float.distance_from_origin());
 }
