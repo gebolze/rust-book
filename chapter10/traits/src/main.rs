@@ -34,6 +34,8 @@ impl Summary for Tweet {
     }
 
     fn summarize(&self) -> String {
+        // NOTE: You can't call the default implementation, when you provide an
+        // overridden implementation for a trait function.
         format!("{}: {}", self.username, self.content)
     }
 }
