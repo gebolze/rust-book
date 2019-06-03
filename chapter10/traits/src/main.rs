@@ -40,6 +40,17 @@ impl Summary for Tweet {
     }
 }
 
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+// as a more expressive alternative we can use the 'trait bounds' syntax
+// instead of the 'impl trait' syntax. With trait bounds we can enforce that
+// multiple parameters have the same type.
+pub fn notify_bounds<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+
 fn main() {
     let tweet = Tweet {
         username: String::from("horse_ebooks"),
@@ -59,4 +70,13 @@ fn main() {
 
     // this call to summarize() will use the default implementation
     println!("New article available! {}", article.summarize());
+
+    // You can implement function that use a trait as parameters, these
+    // functions then can be called with all Types that implement the specified
+    // trait
+    notify(&tweet);
+    notify(&article);
+
+    notify_bounds(&tweet);
+    notify_bounds(&article);
 }
