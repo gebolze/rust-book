@@ -1,3 +1,5 @@
+use std::fmt::{Debug, Display};
+
 pub trait Summary {
     fn summarize_author(&self) -> String;
 
@@ -49,6 +51,23 @@ pub fn notify(item: &impl Summary) {
 // multiple parameters have the same type.
 pub fn notify_bounds<T: Summary>(item: &T) {
     println!("Breaking news! {}", item.summarize());
+}
+
+pub fn notify_display(item: &(impl Summary+Display)) {
+    // item's type must implement the Summary and Display trait
+}
+
+pub fn notify_display_bounds<T: Summary + Display>(item: &T) {
+    // item's type must implement the Summary and Display trait
+}
+
+// When using multiple trait bounds can make the function signature hard to
+// read. For this reason there exist an alternative where syntax
+pub fn some_function<T, U>(t: T, u:U) -> i32 
+    where T: Display + Clone,
+          U: Clone + Debug
+{
+    0
 }
 
 fn main() {
