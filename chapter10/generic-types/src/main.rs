@@ -43,4 +43,7 @@ fn main() {
     let float = Point { x: 1.0, y: 4.0 };
     println!("integer: {:?}", integer);
     println!("float: {:?}", float);
+
+    // the following won't compile because x and y must be the same type
+    // let wont_work = Point { x: 5, y: 4.0 };
 }
