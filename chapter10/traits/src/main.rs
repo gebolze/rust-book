@@ -1,5 +1,9 @@
 pub trait Summary {
-    fn summarize(&self) -> String;
+    fn summarize(&self) -> String {
+        // this is the default implementation which can be overridden when
+        // implementing the trait for a custom type.
+        String::from("(Read more...)")
+    }
 }
 
 pub struct NewsArticle {
@@ -9,11 +13,7 @@ pub struct NewsArticle {
     pub content: String,
 }
 
-impl Summary for NewsArticle {
-    fn summarize(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
-    }
-}
+impl Summary for NewsArticle { }
 
 pub struct Tweet {
     pub username: String,
@@ -36,5 +36,15 @@ fn main() {
         retweet: false,
     };
 
+    let article = NewsArticle {
+        headline: String::from("Penguins win the Stanley Cup Champoinsship!"),
+        location: String::from("Pittsburgh, PA, USA"),
+        author: String::from("Iceburgh"),
+        content: String::from("The Pittsburgh Penguins once again are the best hockey team in the NHL."),
+    };
+
     println!("1 tweet: {}", tweet.summarize());
+
+    // this call to summarize() will use the default implementation
+    println!("New article available! {}", article.summarize());
 }
