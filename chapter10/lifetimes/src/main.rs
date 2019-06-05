@@ -1,3 +1,8 @@
+#[derive(Debug)]
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
 fn main() {
     let string1 = String::from("abcd");
     let string2 = "xyz";
@@ -18,6 +23,15 @@ fn main() {
     // }
 
     // println!("The longest string is {}", result);
+
+
+    // Lifetime Annotations and Struct Definitions
+    let novel = String::from("Call me Ishmael. Some years ago...");
+    let first_sentence = novel.split('.')
+        .next()
+        .expect("Could not find a '.'");
+    let i = ImportantExcerpt { part: first_sentence };
+    println!("Important excerpt: {:?}", i);
 }
 
 // The following function won't compile. 
