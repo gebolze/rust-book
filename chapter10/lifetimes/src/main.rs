@@ -47,6 +47,17 @@ fn main() {
     println!("Important excerpt: {:?} (level: {})", i, i.level());
     let part = i.announce_and_return_part("Look what we've found");
     println!("part: {}", part);
+
+
+    // the static lifetime
+    // static lifetime refers to references that are directly embedded in the
+    // executable and are always available. All string literals have a static
+    // lifetime    
+    let s: &'static str = "I have a static lifetime";
+    println!("static str: {}", s);
+
+    // NOTE: Becareful when using the static lifetime, in most cases you
+    // shouldn't need to use them!
 }
 
 // The following function won't compile. 
